@@ -44,9 +44,12 @@ func setIPAddress() {
 		return
 	}
 
-	fmt.Print("请输入新的IP地址 (例如 192.168.1.100): ")
+	fmt.Print("请输入新的IP地址 (默认值: 192.168.1.100): ")
 	ipaddr, _ := reader.ReadString('\n')
 	ipaddr = strings.TrimSpace(ipaddr)
+	if ipaddr == "" {
+		ipaddr = "192.168.1.100"
+	}
 	// 验证IP地址格式是否有效
 	ip := net.ParseIP(ipaddr)
 	if ip == nil {
@@ -61,9 +64,12 @@ func setIPAddress() {
 		return
 	}
 
-	fmt.Print("请输入新的子网掩码 (例如 255.255.255.0): ")
+	fmt.Print("请输入新的子网掩码 (默认值: 255.255.255.0): ")
 	netmask, _ := reader.ReadString('\n')
 	netmask = strings.TrimSpace(netmask)
+	if netmask == "" {
+		netmask = "255.255.255.0"
+	}
 	netmaskIP := net.ParseIP(netmask)
 	if netmaskIP == nil {
 		fmt.Printf("\n")
@@ -71,9 +77,12 @@ func setIPAddress() {
 		return
 	}
 
-	fmt.Print("请输入新的网关 (例如 192.168.1.1): ")
+	fmt.Print("请输入新的网关 (默认值: 192.168.1.1): ")
 	gateway, _ := reader.ReadString('\n')
 	gateway = strings.TrimSpace(gateway)
+	if gateway == "" {
+		gateway = "192.168.1.1"
+	}
 	gatewayIP := net.ParseIP(gateway)
 	if gatewayIP == nil {
 		fmt.Printf("\n")
